@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Passenger.MainPage">
+    <ScrollView
+        VerticalOptions="Center"
+        HorizontalOptions="Center">
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <!--header-->
+            <VerticalStackLayout
+                Spacing="15">
+                <Image
+                    Source="pickmeup_logo.png"
+                    HeightRequest="185"
+                    Aspect="AspectFit"/>
+
+                <Label
+                    Text="PICK ME APP"
+                    Style="{StaticResource Headline}"
+                    SemanticProperties.HeadingLevel="Level1"
+                    FontFamily="PoppinsBold"
+                    FontSize="50" 
+                    TextColor="#8B0305"/>
+
+                <Label
+                    Text="Cagayan State University-Gonzaga's Tricycle Booking Platform"
+                    FontFamily="PoppinsRegular"
+                    FontAttributes="Italic"
+                    FontSize="25"
+                    HorizontalTextAlignment="Center"/>
+            </VerticalStackLayout>
+
+            <!--button group-->
+            <VerticalStackLayout
+                Spacing="25">
+                <Button
+                    x:Name="goToSignUp_btn"
+                    Clicked="goToSignUpClicked"
+                    Text="Book a Trike" 
+                    HorizontalOptions="Fill"
+                    BackgroundColor="#8B0305"
+                    TextColor="#F6AF0D" 
+                    CornerRadius="20"
+                    FontFamily="PoppinsMedium"
+                    FontSize="16"/>
+
+                <Button
+                    x:Name="goToAboutUs_btn"
+                    Text="What is PICK ME APP?" 
+                    HorizontalOptions="Fill"
+                    BackgroundColor="#8B0305"
+                    TextColor="#F6AF0D" 
+                    CornerRadius="20"
+                    FontFamily="PoppinsMedium"
+                    FontSize="16"/>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
