@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PickMeApp_Admin.AdminLandingPage"
+             Title="">
+    <ScrollView
+        Padding="30, 0">
+        <VerticalStackLayout
+            Spacing="20">
+            <Label
+                Text="Edit Profile"
+                FontSize="30"
+                FontAttributes="Bold"
+                TextColor="#8B0305"
+                HorizontalOptions="Center" />
+
+            <Entry
+                x:Name="username_tbx"
+                Placeholder="New Username"
+                PlaceholderColor="Gray"/>
+            
+            <Entry
+                x:Name="lastname_tbx"
+                Placeholder="Last Name"
+                PlaceholderColor="Gray"/>
+
+            <Entry
+                x:Name="firstname_tbx"
+                Placeholder="First Name"
+                PlaceholderColor="Gray"/>
+
+            <Entry
+                x:Name="password_tbx"
+                Placeholder="New Password"
+                PlaceholderColor="Gray"
+                IsPassword="True"/>
+
+            <Button
+                x:Name="save_btn"
+                Text="Save Changes" 
+                Clicked="SaveChangesClicked"
+                BackgroundColor="#8B0305"
+                TextColor="#F6AF0d"
+                CornerRadius="20"
+                HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
