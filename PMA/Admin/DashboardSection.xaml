@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PMA.Admin"
+             x:Class="PMA.Admin.DashboardSection">
+
+    <ContentView.BindingContext>
+        <local:AdminService/>
+    </ContentView.BindingContext>
+
+    <VerticalStackLayout Padding="30" Spacing="20">
+        <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+            <Frame Grid.Column="0" BorderColor="{StaticResource PMAMaroon}" CornerRadius="15" Padding="10" VerticalOptions="Center">
+                <VerticalStackLayout Spacing="10" Padding="30">
+                    <Label Text="ACTIVE DRIVERS" FontFamily="PoppinsSemiBold" FontSize="25"/>
+                    
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Available Drivers: " FontFamily="PoppinsMedium"/>
+                                <Span Text="{Binding AvailableDriver}" FontFamily="PoppinsRegular"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Booked Drivers: " FontFamily="PoppinsMedium"/>
+                                <Span Text="{Binding BookedDriver}" FontFamily="PoppinsRegular"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Grid.Column="1" BorderColor="{StaticResource PMAMaroon}" CornerRadius="15" Padding="10" VerticalOptions="Center">
+                <VerticalStackLayout Spacing="10" Padding="30">
+                    <Label Text="BOOKINGS" FontFamily="PoppinsSemiBold" FontSize="25"/>
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <Label Grid.Column="0">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Pending Bookings: " FontFamily="PoppinsMedium"/>
+                                    <Span Text="{Binding Pending}" FontFamily="PoppinsRegular"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label Grid.Column="1">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Ongoing Bookings: " FontFamily="PoppinsMedium"/>
+                                    <Span Text="{Binding Ongoing}" FontFamily="PoppinsRegular"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <Label Grid.Column="0">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Canceled Bookings: " FontFamily="PoppinsMedium"/>
+                                    <Span Text="{Binding Canceled}" FontFamily="PoppinsRegular"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label Grid.Column="1">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Completed Bookings: " FontFamily="PoppinsMedium"/>
+                                    <Span Text="{Binding Completed}" FontFamily="PoppinsRegular"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
+
+        <VerticalStackLayout Spacing="10">
+            <!-- header -->
+            <Grid ColumnDefinitions="2*,2*,2*,1*,2*,2*" ColumnSpacing="10" Padding="10" BackgroundColor="{StaticResource PMAOrange}">
+                <Label Text="BOOKED DRIVER" Grid.Column="0" FontFamily="PoppinsSemiBold" FontSize="16" VerticalOptions="Center"/>
+                <Label Text="PASSENGER" Grid.Column="1" FontFamily="PoppinsSemiBold" FontSize="16" VerticalOptions="Center"/>
+                <Label Text="PICK-UP LOCATION" Grid.Column="2" FontFamily="PoppinsSemiBold" FontSize="16" VerticalOptions="Center"/>
+                <Label Text="BOOKED SEATS" Grid.Column="3" FontFamily="PoppinsSemiBold" FontSize="16" VerticalOptions="Center"/>
+                <Label Text="DATE" Grid.Column="4" FontFamily="PoppinsSemiBold" FontSize="16" VerticalOptions="Center"/>
+                <Label Text="STATUS" Grid.Column="5" FontFamily="PoppinsSemiBold" FontSize="16" VerticalOptions="Center"/>
+            </Grid>
+
+            <ScrollView>
+                <CollectionView x:Name="BookingListView" ItemsSource="{Binding BookingList}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="2*,2*,2*,1*,2*,2*" ColumnSpacing="10" Padding="10">
+                                <Label Text="{Binding DriverName}" Grid.Column="0" FontFamily="PoppinsRegular"/>
+                                <Label Text="{Binding PassengerName}" Grid.Column="1" FontFamily="PoppinsRegular"/>
+                                <Label Text="{Binding Location}" Grid.Column="2" FontFamily="PoppinsRegular"/>
+                                <Label Text="{Binding BookedSeats}" Grid.Column="3" FontFamily="PoppinsRegular"/>
+                                <Label Text="{Binding BookingDT}" Grid.Column="4" FontFamily="PoppinsRegular"/>
+                                <Label x:Name="BookingStatusLbl" Text="{Binding Status}" Grid.Column="5" FontFamily="PoppinsRegular"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+    
+</ContentView>

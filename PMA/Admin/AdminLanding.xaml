@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PMA.Admin.AdminLanding">
+
+    <Grid Padding="0" RowSpacing="0">
+
+        <!-- Main Content Grid with defined rows -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <!-- Navbar height -->
+                <RowDefinition Height="*"/>
+                <!-- Remaining space -->
+            </Grid.RowDefinitions>
+
+            <!-- Navbar -->
+            <HorizontalStackLayout Grid.Row="0" Spacing="20" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource PMAMaroon}">
+                <ImageButton x:Name="MenuBtn" Clicked="MenuBtn_Clicked" Source="menu.png"/>
+                <Label Text="PICK-ME-APP" FontFamily="PoppinsBold" FontSize="20" VerticalOptions="Center" TextColor="White"/>
+            </HorizontalStackLayout>
+
+            <!-- Content area below navbar -->
+            <ContentView x:Name="ContentArea" Grid.Row="1"/>
+        </Grid>
+
+        <!-- Side Navigation Overlay -->
+        <Grid x:Name="SideBarLyt" BackgroundColor="#80000000" IsVisible="False">
+            <Frame BackgroundColor="{StaticResource PMAMaroon}" WidthRequest="250" HorizontalOptions="Start" Padding="20" VerticalOptions="FillAndExpand">
+                <VerticalStackLayout Spacing="15">
+                    <ImageButton x:Name="CloseBtn" Clicked="CloseBtn_Clicked" Source="close.png" HorizontalOptions="End"/>
+                    <Button Text="Dashboard" x:Name="DashboardBtn" Clicked="DashboardBtn_Clicked"/>
+                    <Button Text="Drivers" x:Name="DriversSectionBtn" Clicked="DriversSectionBtn_Clicked"/>
+                    <Button Text="Logout" x:Name="LogoutBtn" Clicked="LogoutBtn_Clicked"/>
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PMA.Admin.DriverSection"
+             xmlns:local="clr-namespace:PMA.Admin">
+
+    <ContentView.BindingContext>
+        <local:AdminService/>
+    </ContentView.BindingContext>
+
+    <Grid>
+        <VerticalStackLayout Padding="30" Spacing="20">
+            <!-- top part -->
+            <Frame BorderColor="{StaticResource PMAMaroon}" CornerRadius="15" Padding="30" VerticalOptions="Center">
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                    <VerticalStackLayout Spacing="5" Grid.Column="0">
+                        <Label Text="No. of Registered Drivers" FontFamily="PoppinsSemiBold" FontSize="30"/>
+                        <Label Text="{Binding DCount}" FontFamily="PoppinsBold" FontSize="20"/>
+                    </VerticalStackLayout>
+
+                    <Grid Grid.Column="1" ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <SearchBar x:Name="DriverSearchBar" TextChanged="DriverSearchBar_TextChanged" Placeholder="Search for driver..." Margin="10" BackgroundColor="White" Grid.Column="0"/>
+                        <Button x:Name="NewDriverBtn" Clicked="NewDriverBtn_Clicked" Text="Add New Driver" FontFamily="PoppinsMedium" Grid.Column="1"/>
+                    </Grid>
+                </Grid>
+            </Frame>
+
+            <!-- driver table-->
+            <VerticalStackLayout Spacing="10">
+                <!-- header -->
+                <Grid ColumnDefinitions="1*,2*,2*,1*,1*,2*" ColumnSpacing="10" Padding="10" BackgroundColor="{StaticResource PMAOrange}">
+                    <Label Text="DRIVER ID" Grid.Column="0" FontFamily="PoppinsSemiBold" FontSize="16" VerticalOptions="Center"/>
+                    <Label Text="LAST NAME" Grid.Column="1" FontFamily="PoppinsSemiBold" FontSize="16" VerticalOptions="Center"/>
+                    <Label Text="FIRST NAME" Grid.Column="2" FontFamily="PoppinsSemiBold" FontSize="16" VerticalOptions="Center"/>
+                    <Label Text="MIDDLE INITIAL" Grid.Column="3" FontFamily="PoppinsSemiBold" FontSize="16" VerticalOptions="Center"/>
+                    <Label Text="NAME EXTENSION" Grid.Column="4" FontFamily="PoppinsSemiBold" FontSize="16" VerticalOptions="Center"/>
+                    <Label Text="ACTIONS" Grid.Column="5" FontFamily="PoppinsSemiBold" FontSize="16" VerticalOptions="Center"/>
+                </Grid>
+
+                <!-- list of drivers -->
+                <ScrollView>
+                    <CollectionView x:Name="DriverListView" ItemsSource="{Binding DriverList}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnSpacing="10" ColumnDefinitions="1*,2*,2*,1*,1*,2*" VerticalOptions="Center" RowSpacing="5" Padding="10">
+                                    <Label Text="{Binding DriverId}" Grid.Column="0" FontFamily="PoppinsRegular"/>
+                                    <Label Text="{Binding LastName}" Grid.Column="1" FontFamily="PoppinsRegular"/>
+                                    <Label Text="{Binding FirstName}" Grid.Column="2" FontFamily="PoppinsRegular"/>
+                                    <Label Text="{Binding MiddleInitial}" Grid.Column="3" FontFamily="PoppinsRegular"/>
+                                    <Label Text="{Binding Extension}" Grid.Column="4" FontFamily="PoppinsRegular"/>
+                                    <HorizontalStackLayout Spacing="10" Grid.Column="5">
+                                        <Button Clicked="DriverDeleteBtn_Clicked" Text="Delete" x:Name="DriverDeleteBtn" BackgroundColor="DarkRed" FontFamily="PoppinsMedium" CornerRadius="10" CommandParameter="{Binding .}"/>
+                                        <!--<Button Text="Update" BackgroundColor="DarkGreen" FontFamily="PoppinsMedium" CornerRadius="10"/>-->
+                                    </HorizontalStackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+
+        <!-- popup for new driver -->
+        <Grid Padding="30" x:Name="NewDriverPopUp" IsVisible="False" BackgroundColor="#80000000" ZIndex="1">
+            <Frame BackgroundColor="White" CornerRadius="15">
+                <!-- ScrollView inside the Frame -->
+                <ScrollView>
+                    <VerticalStackLayout Spacing="10">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="New Driver" FontFamily="PoppinsBold" FontSize="30" HorizontalOptions="Center"/>
+
+                            <Label Text="Driver's Profile" FontFamily="PoppinsSemiBold"/>
+
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="Driver ID" FontFamily="PoppinsMedium"/>
+                                <Entry x:Name="NewDIdTbx" FontFamily="PoppinsRegular"/>
+                            </VerticalStackLayout>
+
+                            <Grid ColumnDefinitions="2*,2*,1*,1*" ColumnSpacing="5">
+                                <VerticalStackLayout Spacing="5" Grid.Column="0">
+                                    <Label Text="First Name" FontFamily="PoppinsMedium"/>
+                                    <Entry x:Name="NewDFnameTbx" FontFamily="PoppinsRegular"/>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Spacing="5" Grid.Column="1">
+                                    <Label Text="Last Name" FontFamily="PoppinsMedium"/>
+                                    <Entry x:Name="NewDLnameTbx" FontFamily="PoppinsRegular"/>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Spacing="5" Grid.Column="2">
+                                    <Label Text="Middle Initial" FontFamily="PoppinsMedium"/>
+                                    <Entry x:Name="NewDMITbx" FontFamily="PoppinsRegular" MaxLength="1"/>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Spacing="5" Grid.Column="3">
+                                    <Label Text="Name Extension" FontFamily="PoppinsMedium"/>
+                                    <Entry x:Name="NewDExTbx" FontFamily="PoppinsRegular"/>
+                                </VerticalStackLayout>
+                            </Grid>
+
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="Address" FontFamily="PoppinsMedium"/>
+                                <Entry x:Name="NewDAddressTbx" FontFamily="PoppinsRegular"/>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="Phone No." FontFamily="PoppinsMedium"/>
+                                <Entry x:Name="NewDPhoneTbx" FontFamily="PoppinsRegular"/>
+                            </VerticalStackLayout>
+
+                            <BoxView HeightRequest="1" BackgroundColor="Gray" Margin="0,10"/>
+
+                            <Label Text="Tricycle Information" FontFamily="PoppinsSemiBold"/>
+
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="Tricycle No." FontFamily="PoppinsMedium"/>
+                                <Entry x:Name="NewTNoTbx" FontFamily="PoppinsRegular"/>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="Capacity" FontFamily="PoppinsMedium"/>
+                                <Entry x:Name="NewTCapacityTbx" FontFamily="PoppinsRegular"/>
+                            </VerticalStackLayout>
+
+                            <HorizontalStackLayout Spacing="10">
+                                <Button x:Name="AddBtn" Clicked="AddBtn_Clicked" Text="Add" FontFamily="PoppinsMedium" IsEnabled="False"/>
+                                <Button x:Name="CancelBtn" Clicked="CancelBtn_Clicked" Text="Cancel" FontFamily="PoppinsMedium"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </ScrollView>
+            </Frame>
+        </Grid>
+    </Grid>
+</ContentView>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PMA.Driver"
+             x:Class="PMA.Driver.BookingOverview"
+             Shell.FlyoutBehavior="Disabled">
+
+    <ContentPage.BindingContext>
+        <local:BookingViewModel/>
+    </ContentPage.BindingContext>
+    
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Grid ColumnDefinitions="2*,6*" ColumnSpacing="10" HorizontalOptions="Center">
+            <Image Source="pickmeup_logo.png" HeightRequest="185" Aspect="AspectFit" Grid.Column="0"/>
+            <VerticalStackLayout Spacing="5" Grid.Column="1" VerticalOptions="Center">
+                <Label Text="Pick-Me-App" FontSize="40" FontFamily="PoppinsBold"/>
+                <Label Text="BOOKING OVERVIEW" FontSize="40" FontFamily="PoppinsBold"/>
+            </VerticalStackLayout>
+        </Grid>
+
+        <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+            <Frame CornerRadius="15" BackgroundColor="{StaticResource PMAOrange}" Padding="20">
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Welcome, " FontFamily="PoppinsMedium"/>
+                            <Span Text="{Binding LastLogged}" FontFamily="PoppinsBold" FontSize="30"/>
+                            <Span Text="!" FontFamily="PoppinsMedium"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Frame>
+        </VerticalStackLayout>
+
+        <!-- header -->
+        <Grid Padding="10" RowSpacing="5" ColumnSpacing="10" Margin="0,10,0,0" Grid.Row="3" BackgroundColor="{StaticResource PMAOrange}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Driver" FontFamily="PoppinsSemiBold" HorizontalOptions="Center" Grid.Column="0" />
+            <Label Text="Bookings"  FontFamily="PoppinsSemiBold" HorizontalOptions="Center" Grid.Column="1" />
+            <Label Text="Actions" FontFamily="PoppinsSemiBold" HorizontalOptions="Center" Grid.Column="2" />
+        </Grid>
+
+        <!-- booking list -->
+        <ScrollView Grid.Row="4">
+            <CollectionView x:Name="BookingOverviewList" ItemsSource="{Binding Bookings}" SelectionMode="None" Margin="0,10,0,0">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Gray" Padding="5" Margin="5" HasShadow="True">
+                            <Grid ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="1.5*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Driver Name -->
+                                <Label Text="{Binding DriverName}" FontFamily="PoppinsMedium" Grid.Column="0" HorizontalOptions="Start"/>
+
+                                <!-- Booking Details -->
+                                <StackLayout Grid.Column="1">
+                                    <Label Text="{Binding PassengerName}" 
+                                           FontFamily="PoppinsMedium"/>
+                                    <Label Text="{Binding Location}" 
+                                           FontFamily="PoppinsMedium"/>
+                                    <Label Text="{Binding BookedSeats}" 
+                                           FontFamily="PoppinsMedium"/>
+                                </StackLayout>
+
+                                <!-- Actions -->
+                                <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="End" Grid.Column="2">
+                                    <Button Text="Confirm"
+                                        Command="{Binding BindingContext.ConfirmCommand, Source={x:Reference BookingOverviewList}}"
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="DarkGreen"
+                                        TextColor="White"/>
+                                    <Button Text="Decline"
+                                        Command="{Binding BindingContext.DeclineCommand, Source={x:Reference BookingOverviewList}}"
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="DarkRed"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </ScrollView>
+    </VerticalStackLayout>
+
+</ContentPage>
