@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PMA.MainPage">
+
+    <VerticalStackLayout Padding="50" Spacing="20">
+        <Button x:Name="UserPageBtn" Clicked="UserPageBtn_Clicked" Text="Users"/>
+        
+        <Button x:Name="BookingOverviewBtn" Clicked="BookingOverviewBtn_Clicked" Text="Driver"/>
+    </VerticalStackLayout>
+
+</ContentPage>

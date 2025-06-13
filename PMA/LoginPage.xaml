@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PMA.LoginPage"
+             Shell.FlyoutBehavior="Disabled">
+
+    <VerticalStackLayout Padding="300, 30"  Spacing="20" VerticalOptions="Center">
+        <!--header-->
+        <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+            <Image Source="pickmeup_logo.png" HeightRequest="100" Aspect="AspectFit"/>
+            <VerticalStackLayout>
+                <Label Text="PICK-ME-APP" FontSize="30" FontFamily="PoppinsBold" TextColor="{StaticResource PMAMaroon}" HorizontalOptions="Center"/>
+                <Label Text="CSU-GONZAGA'S TRICYCLE BOOKING PLATFORM" FontFamily="PoppinsMedium" FontSize="16" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+
+        <!--login form-->
+        <VerticalStackLayout Spacing="20">
+            <Label Text="Login here." FontSize="30" FontFamily="PoppinsSemiBold"/>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="User ID" FontFamily="PoppinsMedium"/>
+                <Entry x:Name="UserIdTbx" FontFamily="PoppinsRegular" MaxLength="10"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Password" FontFamily="PoppinsMedium"/>
+                <Entry x:Name="PasswordTbx" IsPassword="True" FontFamily="PoppinsRegular"/>
+            </VerticalStackLayout>
+
+            <Label x:Name="GlobalError" TextColor="DarkRed" FontFamily="PoppinsMedium"/>
+        </VerticalStackLayout>
+
+        <!-- button group -->
+        <VerticalStackLayout Spacing="10">
+            <Button x:Name="LoginBtn" 
+                    Clicked="LoginBtn_Clicked"
+                    Text="Login"
+                    IsEnabled="False"
+                    HorizontalOptions="Fill"
+                    FontFamily="PoppinsMedium"/>
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label Text="Don't have an account?" FontFamily="PoppinsRegular" VerticalOptions="Center"/>
+
+                <Button 
+                    x:Name="GoToSignUpBtn"
+                    Clicked="GoToSignUpBtn_Clicked"
+                    Text="Create an account."
+                    TextColor="#8B0305"
+                    Background="Transparent"
+                    VerticalOptions="Center"
+                    FontAttributes="Italic"
+                    FontFamily="PoppinsSemiBold"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>
