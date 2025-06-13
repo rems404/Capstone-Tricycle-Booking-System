@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PMA.Passenger.ProfilePage"
+             xmlns:local="clr-namespace:PMA.Passenger">
+
+    <ContentView.BindingContext>
+        <local:UserViewModel/>
+    </ContentView.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20">
+            <VerticalStackLayout Spacing="5">
+                <Label Text="User ID" FontFamily="PoppinsMedium"/>
+                <Entry Text="{Binding UserId}" IsReadOnly="True" FontFamily="PoppinsRegular"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout
+                    Spacing="5">
+                <Label
+                        Text="First Name"
+                        FontFamily="PoppinsMedium"/>
+
+                <Entry
+                        x:Name="UserFnameTbx"
+                        Text="{Binding FirstName}"
+                        FontFamily="PoppinsRegular"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label
+                        Text="Last Name"
+                        FontFamily="PoppinsMedium"/>
+
+                <Entry
+                        x:Name="UserLnameTbx"
+                        Text="{Binding LastName}"
+                        FontFamily="PoppinsRegular"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout
+                    Spacing="5">
+                <Label
+                        Text="Middle Initial"
+                        FontFamily="PoppinsMedium"/>
+
+                <Entry
+                        x:Name="MITbx"
+                        Text="{Binding MiddleInitial}"
+                        MaxLength="1"
+                        FontFamily="PoppinsRegular"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout
+                    Spacing="5">
+                <Label
+                        Text="Name Extension"
+                        FontFamily="PoppinsMedium"/>
+
+                <Entry
+                        x:Name="ExtensionTbx"
+                        Text="{Binding Extension}"
+                        FontFamily="PoppinsRegular"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout
+                    Spacing="5">
+                <Label
+                        Text="Email"
+                        FontFamily="PoppinsMedium"/>
+
+                <Entry
+                        x:Name="UserEmailTbx"
+                        Text="{Binding Email}"
+                        FontFamily="PoppinsRegular"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout
+                    Spacing="5">
+                <Label
+                        Text="Phone"
+                        FontFamily="PoppinsMedium"/>
+
+                <Entry
+                        x:Name="UserPhoneTbx"
+                        Text="{Binding Phone}"
+                        FontFamily="PoppinsRegular"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout
+                    Spacing="5">
+                <Label
+                        Text="Change Password"
+                        FontFamily="PoppinsMedium"/>
+
+                <Entry
+                        x:Name="NewPasswordTbx"
+                        FontFamily="PoppinsRegular"
+                        IsPassword="True"/>
+            </VerticalStackLayout>
+
+            <Button 
+                    x:Name="SaveBtn"
+                    Clicked="SaveBtn_Clicked"
+                    Text="Save Changes"
+                    HorizontalOptions="Fill"
+                    BackgroundColor="#8B0305"
+                    TextColor="#F6AF0D" 
+                    CornerRadius="20"
+                    FontFamily="PoppinsMedium"/>
+        </VerticalStackLayout>
+    </ScrollView>
+
+    
+</ContentView>

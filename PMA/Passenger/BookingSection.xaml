@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PMA.Passenger.BookingSection"
+             xmlns:local="clr-namespace:PMA.Passenger">
+
+    <ContentView.BindingContext>
+        <local:UserViewModel/>
+    </ContentView.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20">
+            <VerticalStackLayout x:Name="LandingView" Spacing="20">
+                <!-- greeting -->
+                <Frame Padding="20" BackgroundColor="{StaticResource PMAOrange}" CornerRadius="20">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Welcome to your space," FontFamily="PoppinsMedium"/>
+                        <Label FontSize="25">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding FirstName}" FontFamily="PoppinsBold"/>
+                                    <Span Text="!" FontFamily="PoppinsMedium"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- booking form -->
+                <Frame Padding="20" BorderColor="{StaticResource PMAOrange}" CornerRadius="20">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="BOOKING FORM" FontSize="25" FontFamily="PoppinsSemiBold" TextColor="#8B0305"/>
+
+                        <VerticalStackLayout>
+                            <Label Text="Booked Driver" FontFamily="PoppinsMedium"/>
+                            <Entry x:Name="AvailableDriverTbx" Text="{Binding DriverName}" IsReadOnly="True" FontFamily="PoppinsRegular"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout>
+                            <Label Text="Pick-up Location" FontFamily="PoppinsMedium"/>
+
+                            <Picker x:Name="LocationPcr" FontFamily="PoppinsRegular" SelectedItem="{Binding Location}">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>CBEA</x:String>
+                                        <x:String>CTED</x:String>
+                                        <x:String>CICS</x:String>
+                                        <x:String>CHM</x:String>
+                                        <x:String>CCJE</x:String>
+                                        <x:String>CA</x:String>
+                                        <x:String>Admin Building</x:String>
+                                        <x:String>Gymnasium</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout>
+                            <Label  Text="Seats to Book" FontFamily="PoppinsMedium"/>
+                            <Picker x:Name="SeatsPcr" FontFamily="PoppinsRegular" ItemsSource="{Binding AvailableSeats}" SelectedItem="{Binding BookedSeats}"/>
+                        </VerticalStackLayout>
+
+                        <Button x:Name="BookBtn" Clicked="BookBtn_Clicked" Text="Book" IsEnabled="False"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+
+            <!-- booking card -->
+            <VerticalStackLayout x:Name="BookingCard" IsVisible="False" Spacing="15">
+                <Frame Padding="20" CornerRadius="20" BorderColor="{StaticResource PMAMaroon}">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                            <Label Grid.Column="0">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Booking Date: " FontFamily="PoppinsMedium"/>
+                                        <Span Text="{Binding BookingDT, StringFormat='{}{0:MMMM dd, yyyy hh:mm tt}'}" FontFamily="PoppinsRegular"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label Text="{Binding Status}" FontFamily="PoppinsSemiBold" Grid.Column="1" HorizontalOptions="End"/>
+                        </Grid>
+
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Booked Driver: " FontFamily="PoppinsMedium"/>
+                                    <Span Text="{Binding BookedDriver}" FontFamily="PoppinsRegular"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Pick-up Location: " FontFamily="PoppinsMedium"/>
+                                    <Span Text="{Binding Location}" FontFamily="PoppinsRegular"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Booked Seats: " FontFamily="PoppinsMedium"/>
+                                    <Span Text="{Binding BookedSeats}" FontFamily="PoppinsRegular"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                            <Button x:Name="CancelBtn" Clicked="CancelBtn_Clicked" Text="Cancel Booking" Grid.Column="0"/>
+                            <Button x:Name="CompletedBtn" Clicked="CompletedBtn_Clicked" Text="Completed Booking" IsEnabled="False" Grid.Column="1"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- map tracker -->
+                <WebView x:Name="MapView" HeightRequest="1000" WidthRequest="1000"/>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentView>
