@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PMA.RegistrationPage">
+
+    <ScrollView
+        VerticalOptions="Center"
+        HorizontalOptions="Center">
+        <VerticalStackLayout
+            Padding="30, 0"
+            Spacing="25">
+
+            <!--header-->
+            <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Image Source="pickmeup_logo.png" HeightRequest="100" Aspect="AspectFit"/>
+                <VerticalStackLayout>
+                    <Label Text="PICK-ME-APP" FontSize="30" FontFamily="PoppinsBold" TextColor="{StaticResource PMAMaroon}" HorizontalOptions="Center"/>
+                    <Label Text="CSU-GONZAGA'S TRICYCLE BOOKING PLATFORM" FontFamily="PoppinsMedium" FontSize="16" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+
+            <!-- registration form -->
+            <VerticalStackLayout
+                Spacing="20">
+                <Label 
+                    Text="Create an account."
+                    FontSize="30"
+                    FontFamily="PoppinsSemiBold"/>
+
+                <VerticalStackLayout
+                    Spacing="5">
+                    <Label 
+                        Text="Student ID/Employee ID"
+                        FontFamily="PoppinsMedium"/>
+
+                    <Entry 
+                        x:Name="UserIdTbx"
+                        FontFamily="PoppinsRegular"
+                        MaxLength="8"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout
+                    Spacing="5">
+                    <Label 
+                        Text="First Name"
+                        FontFamily="PoppinsMedium"/>
+
+                    <Entry 
+                        x:Name="FnameTbx"
+                        FontFamily="PoppinsRegular"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout
+                    Spacing="5">
+                    <Label 
+                        Text="Last Name"
+                        FontFamily="PoppinsMedium"/>
+
+                    <Entry 
+                        x:Name="LnameTbx"
+                        FontFamily="PoppinsRegular"/>
+                </VerticalStackLayout>
+
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10">
+                    <VerticalStackLayout
+                        Grid.Column="0"
+                        Spacing="5">
+                        <Label 
+                            Text="Middle Initial"
+                            FontFamily="PoppinsMedium"/>
+
+                        <Entry 
+                            x:Name="MITbx"
+                            MaxLength="1"
+                            FontFamily="PoppinsRegular"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout
+                        Grid.Column="1"
+                        Spacing="5">
+                        <Label 
+                            Text="Name Extension"
+                            FontFamily="PoppinsMedium"/>
+
+                        <Entry 
+                            x:Name="ExtensionTbx"
+                            FontFamily="PoppinsRegular"/>
+                    </VerticalStackLayout>
+                </Grid>
+
+                <VerticalStackLayout
+                    Spacing="5">
+                    <Label 
+                        Text="Email Address"
+                        FontFamily="PoppinsMedium"/>
+
+                    <Entry 
+                        x:Name="EmailTbx"
+                        FontFamily="PoppinsRegular"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout
+                    Spacing="5">
+                    <Label 
+                        Text="Phone Number"
+                        FontFamily="PoppinsMedium"/>
+
+                    <Entry 
+                        x:Name="PhoneTbx"
+                        FontFamily="PoppinsRegular"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout
+                    Spacing="5">
+                    <Label 
+                        Text="Password"
+                        FontFamily="PoppinsMedium"/>
+
+                    <Entry 
+                        x:Name="PasswordTbx"
+                        IsPassword="True"
+                        FontFamily="PoppinsRegular"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout
+                    Spacing="5">
+                    <Label 
+                        Text="Confirm Password"
+                        FontFamily="PoppinsMedium"/>
+
+                    <Entry 
+                        x:Name="ConfirmationTbx"
+                        IsPassword="True"
+                        FontFamily="PoppinsRegular"/>
+                </VerticalStackLayout>
+
+                <Label 
+                    x:Name="GlobalError"
+                    TextColor="DarkRed"/>
+            </VerticalStackLayout>
+
+            <!-- button group -->
+            <VerticalStackLayout
+                Spacing="10">
+                <Button 
+                    x:Name="SignUpBtn" 
+                    Clicked="SignUpBtn_Clicked"
+                    Text="Sign Up"
+                    IsEnabled="False"
+                    HorizontalOptions="Fill"
+                    BackgroundColor="#8B0305"
+                    TextColor="#F6AF0D" 
+                    CornerRadius="20"
+                    FontFamily="PoppinsMedium"/>
+
+                <HorizontalStackLayout
+                    HorizontalOptions="Center">
+                    <Label 
+                        Text="Already have an account?"
+                        FontFamily="PoppinsRegular"
+                        VerticalOptions="Center"/>
+
+                    <Button 
+                        x:Name="GoToLoginBtn"
+                        Clicked="GoToLoginBtn_Clicked"
+                        Text="Login here."
+                        TextColor="#8B0305"
+                        Background="Transparent"
+                        VerticalOptions="Center"
+                        FontAttributes="Italic"
+                        FontFamily="PoppinsSemiBold"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>
