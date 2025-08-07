@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PickMeAppV2.ForePages.RegistrationPage">
+
+    <VerticalStackLayout Padding="10"  Spacing="20" VerticalOptions="Center">
+        <!--header-->
+        <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+            <Image Source="pickmeup_logo.png" HeightRequest="100" Aspect="AspectFit"/>
+            <VerticalStackLayout>
+                <Label Text="PICK-ME-APP" FontSize="30" FontFamily="PoppinsBold" TextColor="{StaticResource PMAMaroon}" HorizontalOptions="Center"/>
+                <Label Text="CSU-GONZAGA'S TRICYCLE BOOKING PLATFORM" FontFamily="PoppinsMedium" FontSize="16" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+
+        <!-- form for personal information -->
+        <VerticalStackLayout x:Name="FrmPersonal" Spacing="10">
+            <Label Text="Create an account." FontSize="30" FontFamily="PoppinsSemiBold"/>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="First Name" FontFamily="PoppinsMedium"/>
+                <Entry x:Name="TbxFname" FontFamily="PoppinsRegular"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Last Name" FontFamily="PoppinsMedium"/>
+                <Entry x:Name="TbxLname" FontFamily="PoppinsRegular"/>
+            </VerticalStackLayout>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="5" RowDefinitions="*,*" RowSpacing="10">
+                <VerticalStackLayout Spacing="5" Grid.Column="0" Grid.Row="0">
+                    <Label Text="Middle Initial" FontFamily="PoppinsMedium"/>
+                    <Entry x:Name="TbxMI" FontFamily="PoppinsRegular" MaxLength="1"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="5" Grid.Column="1" Grid.Row="0">
+                    <Label Text="Name Extension" FontFamily="PoppinsMedium"/>
+                    <Entry x:Name="TbxExtension" FontFamily="PoppinsRegular"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="5" Grid.Column="0" Grid.Row="1">
+                    <Label Text="E-mail Address" FontFamily="PoppinsMedium"/>
+                    <Entry x:Name="TbxEmail" FontFamily="PoppinsRegular" Placeholder="Please provide an active e-mail address."/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="5" Grid.Column="1" Grid.Row="1">
+                    <Label Text="Phone No." FontFamily="PoppinsMedium"/>
+                    <Entry x:Name="TbxPhone" FontFamily="PoppinsRegular" Placeholder="Please provide an active phone number."/>
+                </VerticalStackLayout>
+            </Grid>
+
+            <Button x:Name="BtnNext" Clicked="BtnNext_Clicked" Text="Next" IsEnabled="False" HorizontalOptions="Fill" FontFamily="PoppinsMedium"/>
+        </VerticalStackLayout>
+
+        <!-- form for account details -->
+        <VerticalStackLayout x:Name="FrmAccount" Spacing="10" IsVisible="False">
+            <Label Text="Set up account." FontSize="30" FontFamily="PoppinsSemiBold"/>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="User ID" FontFamily="PoppinsMedium"/>
+                <Entry x:Name="TbxId" Placeholder="Student or employee ID" FontFamily="PoppinsRegular" MaxLength="10"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Password" FontFamily="PoppinsMedium"/>
+                <Entry x:Name="TbxPassword" FontFamily="PoppinsRegular" IsPassword="True"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Confirm Password" FontFamily="PoppinsMedium"/>
+                <Entry x:Name="TbxConfirm" FontFamily="PoppinsRegular" IsPassword="True" IsEnabled="False"/>
+            </VerticalStackLayout>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="5">
+                <Button x:Name="BtnBack" Clicked="BtnBack_Clicked" Text="Back" FontFamily="PoppinsMedium" Grid.Column="0"/>
+                <Button x:Name="BtnSignUp" Clicked="BtnSignUp_Clicked" Text="Sign Up" FontFamily="PoppinsMedium" IsEnabled="False" Grid.Column="1"/>
+            </Grid>
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <CheckBox x:Name="CbxTerms"/>
+                <Label Text="I agree to the Terms and Conditions and consent to the collection and use of my personal information by Pick-Me App." VerticalOptions="Center" FontFamily="PoppinsRegular"/>
+            </HorizontalStackLayout>
+
+            <Label x:Name="ErrorMsg" FontFamily="PoppinsMedium" TextColor="{StaticResource PMAMaroon}"/>
+        </VerticalStackLayout>
+
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Label Text="Already have an account?" VerticalOptions="Center" FontFamily="PoppinsRegular"/>
+            <Button x:Name="BtnLogin" Clicked="BtnLogin_Clicked" Text="Login in here." BackgroundColor="Transparent" TextColor="{StaticResource PMAMaroon}" Background="Transparent" VerticalOptions="Center" FontAttributes="Italic" FontFamily="PoppinsSemiBold"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+    
+</ContentPage>
